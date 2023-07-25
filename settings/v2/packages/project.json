@@ -8,5 +8,11 @@
       "fitWidth": false
     },
     "highQuality": false
-  }
+  },
+  "layer": [
+    {
+      "name": "icon",
+      "value": 1
+    }
+  ]
 }
