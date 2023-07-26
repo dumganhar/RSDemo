@@ -32,7 +32,6 @@ let __point = new Vec2();
 @executionOrder(-1)
 export class CinestationBrain extends Visualization {
     protected __selectedCamera: Nullable<VirtualCamera> = null;
-    protected _material: Material = cinestationShareAssets.viewMaterial;
     protected _brainBlend: CinestationBlendDefinition = new CinestationBlendDefinition;
     protected _visibleInRuntime: boolean = true;
 
@@ -81,13 +80,13 @@ export class CinestationBrain extends Visualization {
             if (vcam._composerChanged) {
                 vcam._composerChanged = false;
                 let composer = vcam.aim.composer;
-                cinestationShareAssets.__setDebugProperty("deadZoneWidth", composer.deadZoneWidth);
-                cinestationShareAssets.__setDebugProperty("deadZoneHeight", composer.deadZoneHeight);
-                cinestationShareAssets.__setDebugProperty("softZoneWidth", composer.softZoneWidth);
-                cinestationShareAssets.__setDebugProperty("softZoneHeight", composer.softZoneHeight);
+                this.material.setProperty("deadZoneWidth", composer.deadZoneWidth);
+                this.material.setProperty("deadZoneHeight", composer.deadZoneHeight);
+                this.material.setProperty("softZoneWidth", composer.softZoneWidth);
+                this.material.setProperty("softZoneHeight", composer.softZoneHeight);
             }
             if (vcam.lookAt) {
-                cinestationShareAssets.__setDebugProperty("lookatPoint", cinestation.worldToScreen(__point, vcam.lookaheadPosition));
+                this.material.setProperty("lookatPoint", cinestation.worldToScreen(__point, vcam.lookaheadPosition));
             }
         }
     }

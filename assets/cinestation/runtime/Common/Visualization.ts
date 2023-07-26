@@ -11,7 +11,8 @@ export class Visualization extends Component {
 
     protected _mesh: Nullable<Mesh> = null;
     protected _model: Nullable<renderer.scene.Model> = null;
-    protected _material: Material = cinestationShareAssets.lineMaterial;
+    @property(Material)
+    public material: Material;
     protected _visibleInRuntime: boolean = CC_EDITOR;
     protected _visibleDefault: boolean = true;
 
@@ -64,7 +65,7 @@ export class Visualization extends Component {
         if (this._modelChanged && this._model) {
             this._modelChanged = false;
             this._mesh = this._updateMesh(this._mesh);
-            this._mesh && this._model.initSubModel(0, this._mesh.renderingSubMeshes[0], this._material);
+            this._mesh && this._model.initSubModel(0, this._mesh.renderingSubMeshes[0], this.material);
         }
     }
 
