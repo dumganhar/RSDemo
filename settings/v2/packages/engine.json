@@ -122,7 +122,7 @@
         "_value": false
       },
       "custom-pipeline": {
-        "_value": true
+        "_value": false
       }
     },
     "flags": {},
@@ -131,7 +131,6 @@
       "3d",
       "animation",
       "base",
-      "custom-pipeline",
       "gfx-webgl",
       "gfx-webgl2",
       "intersection-2d",
@@ -148,6 +147,6 @@
     }
   },
   "macroConfig": {
-    "CUSTOM_PIPELINE_NAME": "Forward"
+    "CUSTOM_PIPELINE_NAME": ""
   }
 }
