@@ -37,7 +37,7 @@ export class Test extends Component {
         this.vCamera.body.type = BodyType.Tracked;
         this._anim.play();
         this._anim.on(Animation.EventType.FINISHED, ()=>{
-            this.vCamera.body.type = BodyType.None;
+            // this.vCamera.body.type = BodyType.None;
         });
     }
 

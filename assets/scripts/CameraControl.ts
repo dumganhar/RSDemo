@@ -8,8 +8,6 @@ const { ccclass, property } = _decorator;
 
 @ccclass('CameraControl')
 export class CameraControl extends Component {
-    private _counter = 0;
-
     private _virtualCamera: VirtualCamera;
     private _tmpPosition: Vec3 = new Vec3();
     private _vCameraOriginalPos: Vec3 = new Vec3(0, 1.9, 1.3);
@@ -20,15 +18,21 @@ export class CameraControl extends Component {
         this._virtualCamera = this.getComponent(VirtualCamera);
         this.subscribeAcc();
         const animComp = this.getComponent(Animation);
-        animComp.on(Animation.EventType.PAUSE, () => this._ready = false);
-        animComp.on(Animation.EventType.PLAY, () => this._ready = false);
-        animComp.on(Animation.EventType.STOP, () => this._ready = false);
-        animComp.on(Animation.EventType.RESUME, () => this._ready = false);
-        animComp.on(Animation.EventType.FINISHED, ()=>{
-            // this.node.getPosition(this._vCameraOriginalPos);
-            console.log(`vCamera end position: x: ${this._vCameraOriginalPos.x}, y: ${this._vCameraOriginalPos.y}, z: ${this._vCameraOriginalPos.z}`)
-            this._ready = true;
-        });
+        animComp.on(Animation.EventType.PAUSE, this.resetReadyState.bind(this));
+        animComp.on(Animation.EventType.PLAY, this.resetReadyState.bind(this));
+        animComp.on(Animation.EventType.STOP, this.resetReadyState.bind(this));
+        animComp.on(Animation.EventType.RESUME, this.resetReadyState.bind(this));
+        animComp.on(Animation.EventType.FINISHED, () => this.scheduleOnce(this.setReady.bind(this), 0.2));
+    }
+
+    private setReady() {
+        this._ready = true;
+        this._virtualCamera.body.type = BodyType.None;
+    }
+
+    private resetReadyState() {
+        this.unscheduleAllCallbacks();
+        this._ready = false;
     }
 
     onDestroy() {
@@ -37,24 +41,20 @@ export class CameraControl extends Component {
 
     subscribeAcc() {
         input.setAccelerometerEnabled(true); 
-        input.setAccelerometerInterval(50);
+        input.setAccelerometerInterval(80);
         input.on(Input.EventType.DEVICEMOTION, this.onDeviceMotionEvent, this);
     }
 
     onDeviceMotionEvent (event: EventAcceleration) {
         if (!this._ready || this._virtualCamera.body.type === BodyType.Tracked) {
+            this._currentTween = null;
             return;
         }
 
-        this._counter++;
-        // if (this._counter % 10 === 0) {
-        //     log('x: ' + event.acc.x + ", y: " + event.acc.y + ', z: ' + event.acc.z);
-        // }
         const ACC_VALUE_SCALE = 0.1;
         Vec3.copy(this._tmpPosition, this._vCameraOriginalPos);
         this._tmpPosition.x += event.acc.x * ACC_VALUE_SCALE;
         this._tmpPosition.y += event.acc.y * ACC_VALUE_SCALE;
-        // this._virtualCamera.node.setPosition(this._tmpPosition);
         if (this._currentTween) {
             this._currentTween.stop();
         }
@@ -62,7 +62,7 @@ export class CameraControl extends Component {
     }
 
     private animateTo(node: Node, pos: Vec3): Tween<Node> {
-        let tweenDuration: number = 0.16;
+        let tweenDuration: number = 0.32;
         const r = tween(node)
             .to(tweenDuration, { position: pos }, {
                 easing: "linear",

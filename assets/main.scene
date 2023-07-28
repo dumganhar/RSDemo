@@ -303,7 +303,7 @@
     "_postProcess": {
       "__id__": 7
     },
-    "_usePostProcess": false,
+    "_usePostProcess": true,
     "_cameraType": -1,
     "_trackingType": 0,
     "_id": "7dWQTpwS5LrIHnc1zAPUtf"
@@ -316,7 +316,7 @@
     "node": {
       "__id__": 8
     },
-    "_enabled": true,
+    "_enabled": false,
     "__prefab": null,
     "_shadingScale": 1,
     "_id": "e3caP3/wtHkarw2tWYo8wr"
@@ -389,7 +389,7 @@
     "node": {
       "__id__": 8
     },
-    "_enabled": true,
+    "_enabled": false,
     "__prefab": null,
     "_threshold": 0.56,
     "_iterations": 3,
@@ -436,8 +436,8 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "_sampleScale": 1,
-    "_feedback": 0.95,
+    "_sampleScale": 1.43,
+    "_feedback": 0.62,
     "_id": "84coRhc/hKKZJzUEBGIQbu"
   },
   {
@@ -5016,12 +5016,12 @@
       "x": -1.330355612183231e-18,
       "y": 0.9993908270190958,
       "z": -0.03489949670250097,
-      "w": 6.131612082276729e-17
+      "w": 6.131612082276728e-17
     },
     "_lscale": {
       "__type__": "cc.Vec3",
       "x": 1,
-      "y": 0.9999999999999998,
+      "y": 0.9999999999999999,
       "z": 1.0000000000000002
     },
     "_mobility": 0,
