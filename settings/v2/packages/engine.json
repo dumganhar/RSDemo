@@ -36,8 +36,8 @@
         "_value": true
       },
       "physics": {
-        "_value": false,
-        "_option": "physics-ammo"
+        "_value": true,
+        "_option": "physics-builtin"
       },
       "physics-ammo": {
         "_value": false
@@ -92,10 +92,10 @@
         "_value": false
       },
       "tween": {
-        "_value": false
+        "_value": true
       },
       "websocket": {
-        "_value": true
+        "_value": false
       },
       "websocket-server": {
         "_value": false
@@ -136,11 +136,12 @@
       "gfx-webgl2",
       "intersection-2d",
       "particle",
+      "physics-builtin",
       "primitive",
       "profiler",
       "skeletal-animation",
-      "ui",
-      "websocket"
+      "tween",
+      "ui"
     ],
     "noDeprecatedFeatures": {
       "value": true,

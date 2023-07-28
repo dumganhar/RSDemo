@@ -18,6 +18,15 @@
         "complete": false,
         "form": "https://creator-api.cocos.com/api/form/show?sid=1d0b54f66cdca1a7663a3701d33bb920"
       }
+    },
+    "build-android": {
+      "id": "build-android",
+      "label": "build-android",
+      "enable": false,
+      "build-android": {
+        "complete": false,
+        "form": "https://creator-api.cocos.com/api/form/show?"
+      }
     }
   }
 }

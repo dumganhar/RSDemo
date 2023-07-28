@@ -15,6 +15,7 @@ export class IconAnimTrigger extends Component {
         let delayToPlay = 0;
         for (const child of children) {
             delayToPlay += 0.05;
+            child.active = true;
             this.scheduleOnce(()=>{
                 const modelNode = child.getChildByName('Sketchfab_model');
                 if (modelNode) {
