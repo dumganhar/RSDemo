@@ -39,9 +39,18 @@ export class CocosCarApiImpl {
             this.unlockScreen();
             break;
         }
+        case 'lockScreen': {
+            this.lockScreen();
+            break;
+        }
         default:
             break;
         }
+    }
+
+    private lockScreen(): void {
+        const canvas: Node = find('Canvas');
+        canvas.getComponent(Test).reset();
     }
 
     private unlockScreen(): void {

@@ -1,6 +1,7 @@
 import { _decorator, Component, Node, Animation, find, profiler } from 'cc';
 import { VirtualCamera } from '../cinestation/runtime/VirtualCamera';
 import { BodyType, VCamBody } from '../cinestation/runtime/Datas/VCamBody';
+import { game } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Test')
@@ -17,8 +18,8 @@ export class Test extends Component {
     start() {
         this.resetIconsPosition();
         this._anim = this.vCamera.getComponent(Animation);
-
-        // profiler.hideStats();
+        game.frameRate = 30;
+        profiler.hideStats();
     }
 
     private resetIconsPosition() {
